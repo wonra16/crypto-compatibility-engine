@@ -1,0 +1,510 @@
+{
+  "personalities": [
+    {
+      "id": "bitcoin_purist",
+      "name": "Bitcoin Purist",
+      "emoji": "₿",
+      "description": "Only BTC, everything else is a distraction",
+      "traits": {
+        "token_preference": "btc_only",
+        "risk_tolerance": 65,
+        "nft_interest": 10,
+        "defi_engagement": 20,
+        "meme_coin_tolerance": 5
+      },
+      "red_flags": [
+        "altcoin mentions",
+        "NFT pfps",
+        "yield farming"
+      ],
+      "green_flags": [
+        "cold storage",
+        "node running",
+        "sound money talk"
+      ],
+      "comedy_lines": [
+        "Has a tattoo that says 'Not your keys, not your coins'",
+        "Thinks anything after 2009 is an ICO scam",
+        "Unfollows people who mention Ethereum"
+      ]
+    },
+    {
+      "id": "defi_degenerate",
+      "name": "DeFi Degenerate",
+      "emoji": "🌾",
+      "description": "Yield farming is life, APY is love",
+      "traits": {
+        "token_preference": "defi_tokens",
+        "risk_tolerance": 95,
+        "nft_interest": 40,
+        "defi_engagement": 98,
+        "meme_coin_tolerance": 70
+      },
+      "red_flags": [
+        "stable coins only",
+        "low APY tolerance",
+        "CEX lovers"
+      ],
+      "green_flags": [
+        "impermanent loss stories",
+        "gas fee complaints",
+        "multiple wallets"
+      ],
+      "comedy_lines": [
+        "Checks APY before checking their heartbeat",
+        "Has been rugged more times than a yoga studio",
+        "Dreams in smart contract code"
+      ]
+    },
+    {
+      "id": "nft_connoisseur",
+      "name": "NFT Connoisseur",
+      "emoji": "🎨",
+      "description": "Art is eternal, JPEGs are forever",
+      "traits": {
+        "token_preference": "eth_sol",
+        "risk_tolerance": 75,
+        "nft_interest": 98,
+        "defi_engagement": 30,
+        "meme_coin_tolerance": 40
+      },
+      "red_flags": [
+        "right-click savers",
+        "fungible tokens only",
+        "utility maximalists"
+      ],
+      "green_flags": [
+        "OpenSea whale",
+        "Discord moderator",
+        "whitelist collector"
+      ],
+      "comedy_lines": [
+        "Spent more on a JPEG than on rent",
+        "Can spot a derivative collection from a mile away",
+        "Judges people by their PFP rarity"
+      ]
+    },
+    {
+      "id": "shitcoin_surfer",
+      "name": "Shitcoin Surfer",
+      "emoji": "🏄",
+      "description": "Riding the waves of pump and dump",
+      "traits": {
+        "token_preference": "meme_coins",
+        "risk_tolerance": 99,
+        "nft_interest": 60,
+        "defi_engagement": 50,
+        "meme_coin_tolerance": 100
+      },
+      "red_flags": [
+        "fundamental analysis",
+        "whitepaper readers",
+        "long-term holders"
+      ],
+      "green_flags": [
+        "Telegram group addict",
+        "pump.fun user",
+        "ape mentality"
+      ],
+      "comedy_lines": [
+        "Portfolio looks like a casino's loss report",
+        "FOMO is their primary investment strategy",
+        "Has a PhD in catching falling knives"
+      ]
+    },
+    {
+      "id": "crypto_boomer",
+      "name": "Crypto Boomer",
+      "emoji": "👴",
+      "description": "Blue chips only, no degeneracy allowed",
+      "traits": {
+        "token_preference": "top_10",
+        "risk_tolerance": 35,
+        "nft_interest": 15,
+        "defi_engagement": 25,
+        "meme_coin_tolerance": 10
+      },
+      "red_flags": [
+        "new protocols",
+        "unaudited contracts",
+        "anonymous teams"
+      ],
+      "green_flags": [
+        "dollar cost averaging",
+        "cold storage",
+        "tax planning"
+      ],
+      "comedy_lines": [
+        "Still waiting for Ethereum 2.0 to prove itself",
+        "Thinks 10x returns are for degenerates",
+        "Has a spreadsheet for everything"
+      ]
+    },
+    {
+      "id": "eth_maximalist",
+      "name": "ETH Maximalist",
+      "emoji": "♦️",
+      "description": "Ethereum is the world computer",
+      "traits": {
+        "token_preference": "eth_ecosystem",
+        "risk_tolerance": 70,
+        "nft_interest": 80,
+        "defi_engagement": 85,
+        "meme_coin_tolerance": 30
+      },
+      "red_flags": [
+        "Bitcoin maximalists",
+        "Ethereum killers",
+        "centralized chains"
+      ],
+      "green_flags": [
+        "smart contract knowledge",
+        "EIP discussions",
+        "Vitalik worship"
+      ],
+      "comedy_lines": [
+        "Calls every other chain a 'centralized database'",
+        "Gas fees are just the cost of decentralization",
+        "Has staking validator tattoo plans"
+      ]
+    },
+    {
+      "id": "sol_enthusiast",
+      "name": "SOL Enthusiast",
+      "emoji": "☀️",
+      "description": "Fast, cheap, and occasionally offline",
+      "traits": {
+        "token_preference": "solana",
+        "risk_tolerance": 80,
+        "nft_interest": 90,
+        "defi_engagement": 75,
+        "meme_coin_tolerance": 85
+      },
+      "red_flags": [
+        "slow chains",
+        "high fees",
+        "downtime deniers"
+      ],
+      "green_flags": [
+        "Magic Eden user",
+        "pump.fun degen",
+        "network restart veteran"
+      ],
+      "comedy_lines": [
+        "Has experienced more network outages than a 90s modem",
+        "Speed is life, decentralization is negotiable",
+        "Owns every dog-themed coin on Solana"
+      ]
+    },
+    {
+      "id": "dao_governance_guru",
+      "name": "DAO Governance Guru",
+      "emoji": "🗳️",
+      "description": "Democracy on-chain, voting is my passion",
+      "traits": {
+        "token_preference": "governance_tokens",
+        "risk_tolerance": 60,
+        "nft_interest": 50,
+        "defi_engagement": 70,
+        "meme_coin_tolerance": 20
+      },
+      "red_flags": [
+        "centralized projects",
+        "non-voters",
+        "quick flippers"
+      ],
+      "green_flags": [
+        "Snapshot power user",
+        "forum contributor",
+        "proposal writer"
+      ],
+      "comedy_lines": [
+        "Spends more time voting than actually using the protocol",
+        "Can debate tokenomics for hours",
+        "Has strong opinions about quadratic voting"
+      ]
+    },
+    {
+      "id": "privacy_maximalist",
+      "name": "Privacy Maximalist",
+      "emoji": "🥷",
+      "description": "Monero is freedom, transparency is surveillance",
+      "traits": {
+        "token_preference": "privacy_coins",
+        "risk_tolerance": 55,
+        "nft_interest": 5,
+        "defi_engagement": 40,
+        "meme_coin_tolerance": 10
+      },
+      "red_flags": [
+        "KYC requirements",
+        "chain analysis",
+        "public addresses"
+      ],
+      "green_flags": [
+        "Tor usage",
+        "mixing services",
+        "anonymous wallets"
+      ],
+      "comedy_lines": [
+        "Uses a different wallet for every transaction",
+        "Thinks blockchain transparency is a feature, not a bug",
+        "Probably doesn't exist according to the IRS"
+      ]
+    },
+    {
+      "id": "web3_builder",
+      "name": "Web3 Builder",
+      "emoji": "🛠️",
+      "description": "Building the future, one smart contract at a time",
+      "traits": {
+        "token_preference": "utility_tokens",
+        "risk_tolerance": 65,
+        "nft_interest": 70,
+        "defi_engagement": 80,
+        "meme_coin_tolerance": 40
+      },
+      "red_flags": [
+        "get-rich-quick schemes",
+        "no utility",
+        "copy-paste projects"
+      ],
+      "green_flags": [
+        "GitHub contributions",
+        "hackathon winner",
+        "developer documentation"
+      ],
+      "comedy_lines": [
+        "Has 47 unfinished projects and 3 that actually work",
+        "Can explain gas optimization while asleep",
+        "Thinks in Solidity and dreams in Rust"
+      ]
+    },
+    {
+      "id": "twitter_alpha_hunter",
+      "name": "Twitter Alpha Hunter",
+      "emoji": "🔍",
+      "description": "First to know, first to ape, first to rope",
+      "traits": {
+        "token_preference": "trending",
+        "risk_tolerance": 90,
+        "nft_interest": 75,
+        "defi_engagement": 60,
+        "meme_coin_tolerance": 95
+      },
+      "red_flags": [
+        "late to trends",
+        "DYOR believers",
+        "slow movers"
+      ],
+      "green_flags": [
+        "TweetDeck setup",
+        "notification alerts",
+        "insider connections"
+      ],
+      "comedy_lines": [
+        "Refreshes Twitter more than breathing",
+        "Has alerts for every crypto influencer's tweets",
+        "Can ape into a project in under 30 seconds"
+      ]
+    },
+    {
+      "id": "stablecoin_farmer",
+      "name": "Stablecoin Farmer",
+      "emoji": "💵",
+      "description": "Making that sweet, sweet 5% APY",
+      "traits": {
+        "token_preference": "stablecoins",
+        "risk_tolerance": 20,
+        "nft_interest": 10,
+        "defi_engagement": 60,
+        "meme_coin_tolerance": 5
+      },
+      "red_flags": [
+        "volatility",
+        "unpegged stables",
+        "risky yields"
+      ],
+      "green_flags": [
+        "yield aggregators",
+        "insurance protocols",
+        "diversified stables"
+      ],
+      "comedy_lines": [
+        "Gets anxiety when their portfolio moves 0.1%",
+        "Thinks 5% APY is living dangerously",
+        "Has a detailed spreadsheet comparing USDC vs USDT"
+      ]
+    }
+  ],
+  "compatibility_matrix": {
+    "bitcoin_purist": {
+      "bitcoin_purist": 95,
+      "defi_degenerate": 15,
+      "nft_connoisseur": 10,
+      "shitcoin_surfer": 5,
+      "crypto_boomer": 85,
+      "eth_maximalist": 20,
+      "sol_enthusiast": 12,
+      "dao_governance_guru": 40,
+      "privacy_maximalist": 80,
+      "web3_builder": 50,
+      "twitter_alpha_hunter": 25,
+      "stablecoin_farmer": 60
+    },
+    "defi_degenerate": {
+      "bitcoin_purist": 15,
+      "defi_degenerate": 98,
+      "nft_connoisseur": 65,
+      "shitcoin_surfer": 90,
+      "crypto_boomer": 20,
+      "eth_maximalist": 85,
+      "sol_enthusiast": 88,
+      "dao_governance_guru": 75,
+      "privacy_maximalist": 45,
+      "web3_builder": 80,
+      "twitter_alpha_hunter": 92,
+      "stablecoin_farmer": 25
+    },
+    "nft_connoisseur": {
+      "bitcoin_purist": 10,
+      "defi_degenerate": 65,
+      "nft_connoisseur": 95,
+      "shitcoin_surfer": 60,
+      "crypto_boomer": 30,
+      "eth_maximalist": 90,
+      "sol_enthusiast": 85,
+      "dao_governance_guru": 70,
+      "privacy_maximalist": 25,
+      "web3_builder": 75,
+      "twitter_alpha_hunter": 80,
+      "stablecoin_farmer": 15
+    },
+    "shitcoin_surfer": {
+      "bitcoin_purist": 5,
+      "defi_degenerate": 90,
+      "nft_connoisseur": 60,
+      "shitcoin_surfer": 100,
+      "crypto_boomer": 10,
+      "eth_maximalist": 55,
+      "sol_enthusiast": 95,
+      "dao_governance_guru": 40,
+      "privacy_maximalist": 30,
+      "web3_builder": 50,
+      "twitter_alpha_hunter": 98,
+      "stablecoin_farmer": 8
+    },
+    "crypto_boomer": {
+      "bitcoin_purist": 85,
+      "defi_degenerate": 20,
+      "nft_connoisseur": 30,
+      "shitcoin_surfer": 10,
+      "crypto_boomer": 92,
+      "eth_maximalist": 65,
+      "sol_enthusiast": 35,
+      "dao_governance_guru": 55,
+      "privacy_maximalist": 70,
+      "web3_builder": 60,
+      "twitter_alpha_hunter": 25,
+      "stablecoin_farmer": 88
+    },
+    "eth_maximalist": {
+      "bitcoin_purist": 20,
+      "defi_degenerate": 85,
+      "nft_connoisseur": 90,
+      "shitcoin_surfer": 55,
+      "crypto_boomer": 65,
+      "eth_maximalist": 98,
+      "sol_enthusiast": 40,
+      "dao_governance_guru": 85,
+      "privacy_maximalist": 50,
+      "web3_builder": 92,
+      "twitter_alpha_hunter": 70,
+      "stablecoin_farmer": 55
+    },
+    "sol_enthusiast": {
+      "bitcoin_purist": 12,
+      "defi_degenerate": 88,
+      "nft_connoisseur": 85,
+      "shitcoin_surfer": 95,
+      "crypto_boomer": 35,
+      "eth_maximalist": 40,
+      "sol_enthusiast": 96,
+      "dao_governance_guru": 60,
+      "privacy_maximalist": 35,
+      "web3_builder": 78,
+      "twitter_alpha_hunter": 90,
+      "stablecoin_farmer": 30
+    },
+    "dao_governance_guru": {
+      "bitcoin_purist": 40,
+      "defi_degenerate": 75,
+      "nft_connoisseur": 70,
+      "shitcoin_surfer": 40,
+      "crypto_boomer": 55,
+      "eth_maximalist": 85,
+      "sol_enthusiast": 60,
+      "dao_governance_guru": 95,
+      "privacy_maximalist": 60,
+      "web3_builder": 88,
+      "twitter_alpha_hunter": 65,
+      "stablecoin_farmer": 50
+    },
+    "privacy_maximalist": {
+      "bitcoin_purist": 80,
+      "defi_degenerate": 45,
+      "nft_connoisseur": 25,
+      "shitcoin_surfer": 30,
+      "crypto_boomer": 70,
+      "eth_maximalist": 50,
+      "sol_enthusiast": 35,
+      "dao_governance_guru": 60,
+      "privacy_maximalist": 98,
+      "web3_builder": 65,
+      "twitter_alpha_hunter": 40,
+      "stablecoin_farmer": 55
+    },
+    "web3_builder": {
+      "bitcoin_purist": 50,
+      "defi_degenerate": 80,
+      "nft_connoisseur": 75,
+      "shitcoin_surfer": 50,
+      "crypto_boomer": 60,
+      "eth_maximalist": 92,
+      "sol_enthusiast": 78,
+      "dao_governance_guru": 88,
+      "privacy_maximalist": 65,
+      "web3_builder": 95,
+      "twitter_alpha_hunter": 70,
+      "stablecoin_farmer": 45
+    },
+    "twitter_alpha_hunter": {
+      "bitcoin_purist": 25,
+      "defi_degenerate": 92,
+      "nft_connoisseur": 80,
+      "shitcoin_surfer": 98,
+      "crypto_boomer": 25,
+      "eth_maximalist": 70,
+      "sol_enthusiast": 90,
+      "dao_governance_guru": 65,
+      "privacy_maximalist": 40,
+      "web3_builder": 70,
+      "twitter_alpha_hunter": 96,
+      "stablecoin_farmer": 20
+    },
+    "stablecoin_farmer": {
+      "bitcoin_purist": 60,
+      "defi_degenerate": 25,
+      "nft_connoisseur": 15,
+      "shitcoin_surfer": 8,
+      "crypto_boomer": 88,
+      "eth_maximalist": 55,
+      "sol_enthusiast": 30,
+      "dao_governance_guru": 50,
+      "privacy_maximalist": 55,
+      "web3_builder": 45,
+      "twitter_alpha_hunter": 20,
+      "stablecoin_farmer": 94
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "match_comments": {
+    "high_compatibility": [
+      "You two are like ETH and gas fees - inseparable! 💕",
+      "Match made in the blockchain! Time to mint a relationship NFT! 🎨",
+      "Your compatibility is higher than a shitcoiner's hopium! 🚀",
+      "You both hodl the same values - literally! 💎🙌",
+      "This match is more stable than USDT (which isn't saying much, but still)! 😅",
+      "Your portfolios AND personalities align - that's rarer than a Bored Ape! 🐵",
+      "You're more compatible than Uniswap and DeFi degens! 🦄",
+      "This compatibility score is pumping harder than a new memecoin! 📈",
+      "You two have better chemistry than Ethereum has smart contracts! ⚡",
+      "Your match is more solid than Bitcoin at $100k! ₿"
+    ],
+    "medium_compatibility": [
+      "Not bad! You're like BTC and ETH - different but both legendary! ✨",
+      "You might disagree on chains, but agree on gains! 💰",
+      "Your compatibility is decent - like a 10x instead of a 100x! 📊",
+      "You're moderately aligned, like Layer 2s and Ethereum! 🔗",
+      "Not perfect, but better than most rugpulls! 🏃",
+      "Your match is okay - like Litecoin, reliable but not exciting! 🌙",
+      "Moderate vibes - you won't ape together, but you won't dump either! 📉",
+      "You're compatible enough to share alpha, not necessarily a wallet! 💼",
+      "Decent match - like finding a 2x gem in a bear market! 🐻",
+      "You two are like stablecoins - not thrilling but dependable! 💵"
+    ],
+    "low_compatibility": [
+      "Oof! You're more opposite than bulls and bears! 🐂🐻",
+      "This match has more red flags than a Chinese exchange! 🚩",
+      "You two mixing is like sending ETH to a BTC address - not gonna work! ❌",
+      "Your compatibility is lower than Terra's TVL in 2023! 📉",
+      "You're like a Bitcoin maxi and a shitcoin degen - oil and water! 🛢️💧",
+      "This match is shakier than a new blockchain's consensus! 😬",
+      "You two together? That's more risky than leverage trading! ⚠️",
+      "Compatibility level: Do Kwon's credibility! 💀",
+      "You're as incompatible as centralized exchanges and privacy! 🔒",
+      "This match would fail faster than an unaudited smart contract! 🐛"
+    ]
+  },
+  "date_ideas": {
+    "defi_focused": [
+      "First date: Compare your impermanent loss horror stories over coffee! ☕",
+      "Date night: Stake some tokens together and watch the APY! 🌾",
+      "Romantic evening: Analyze yield farming strategies by candlelight! 🕯️",
+      "Fun date: See who can find the best liquidity pool! 🏊",
+      "Perfect date: Arguing about which DEX has the best UI/UX! 💻"
+    ],
+    "nft_focused": [
+      "First date: Browse OpenSea together and judge people's taste! 🎨",
+      "Date idea: Mint a collaborative NFT to commemorate your match! 🖼️",
+      "Fun activity: Attend a virtual gallery in the metaverse! 🌐",
+      "Perfect evening: Debate whether your NFTs are art or JPEGs! 🤔",
+      "Romantic moment: Watch the floor price of your favorite collection! 📈"
+    ],
+    "trading_focused": [
+      "Date night: Watch candles together (the chart kind)! 📊",
+      "Fun activity: See who can time the market better (spoiler: neither)! ⏰",
+      "First date: Share your worst trade stories and laugh! 😂",
+      "Romantic evening: Set stop losses together! 💔",
+      "Perfect date: Refresh CoinGecko every 5 seconds as a couple! 🦎"
+    ],
+    "conservative_focused": [
+      "Safe first date: Discuss your dollar-cost averaging strategies! 💰",
+      "Date idea: Review each other's cold storage setup! 🧊",
+      "Fun evening: Calculate your tax liabilities together! 🧮",
+      "Perfect activity: Debate the merits of different hardware wallets! 🔐",
+      "Romantic moment: Admire each other's diversified portfolios! 📂"
+    ],
+    "meme_focused": [
+      "First date: Ape into a memecoin together and see what happens! 🐵",
+      "Date night: Hunt for the next 1000x gem on Telegram! 📱",
+      "Fun activity: Compare whose portfolio is more degen! 🎲",
+      "Perfect date: Create your own memecoin and rug each other! 😈",
+      "Romantic evening: Share your best crypto Twitter drama stories! 🍿"
+    ]
+  },
+  "personality_roasts": [
+    "Your risk tolerance is higher than Snoop Dogg! 🌿",
+    "You've been rugged more times than a yoga instructor! 🧘",
+    "Your portfolio diversification strategy is 'all in'! 💯",
+    "You check prices more often than your heart rate! ❤️",
+    "FOMO is not just a feeling for you, it's a lifestyle! 🏃",
+    "Your favorite color is probably 'green candle'! 🕯️",
+    "You probably have more wallets than pairs of socks! 🧦",
+    "Diamond hands? More like 'can't find the sell button' hands! 💎",
+    "You've explained blockchain at parties that you weren't invited back to! 🎉",
+    "Your dating profile probably says 'looking for someone to HODL'! 📱"
+  ],
+  "trait_comments": {
+    "both_high_risk": "You're both certified degens - prepare for wild rides together! 🎢",
+    "both_low_risk": "You two are so conservative, even Bitcoin seems risky to you! 🛡️",
+    "opposite_risk": "One of you is diamond hands, the other is paper hands - drama incoming! 💎📄",
+    "both_nft_lovers": "Your future home will be decorated with JPEGs! 🖼️",
+    "both_nft_haters": "You both think NFTs are overpriced JPEGs - match made in pragmatism! 🤝",
+    "both_defi_addicts": "Your couple's therapy will be discussing impermanent loss! 💑",
+    "both_memecoin_fans": "You're both addicted to gambling - I mean 'investing'! 🎰",
+    "both_serious": "You two are so serious about crypto, you probably read whitepapers for fun! 📚"
+  },
+  "viral_share_templates": [
+    "Just found my crypto soulmate on Farcaster! We're {compatibility}% compatible! 💕 {funny_comment}",
+    "Me and {username} are {compatibility}% compatible! {trait_comment} Who knew finding love in crypto would be this easy? 😂",
+    "Crypto compatibility test says me and {username} are {compatibility}% matched! {date_idea} 🚀",
+    "Found my perfect trading partner! {username} and I are {compatibility}% compatible! {personality_comment} 💎🙌",
+    "{username} and I got a {compatibility}% compatibility score! {match_comment} Time to create a multi-sig wallet together! 🔐"
+  ],
+  "opening_lines": [
+    "Ready to find your crypto soulmate? Let's analyze your on-chain personality! 🔍",
+    "Time to discover who you're most compatible with in the crypto universe! 💫",
+    "Let's see who your perfect crypto match is! Warning: Results may be dangerously accurate! ⚠️",
+    "Swipe right on the blockchain! Let's find your perfect match! ❤️",
+    "Ready to find someone who understands your portfolio choices? Let's go! 🚀"
+  ],
+  "result_headers": {
+    "90_100": "💕 PERFECT MATCH! Your Crypto Soulmate!",
+    "75_89": "🔥 HOT MATCH! Strong Compatibility!",
+    "60_74": "✨ GOOD MATCH! Decent Vibes!",
+    "40_59": "😐 MODERATE MATCH! Could Work!",
+    "25_39": "⚠️ LOW MATCH! Proceed with Caution!",
+    "0_24": "💔 INCOMPATIBLE! Oil and Water!"
+  }
+}
