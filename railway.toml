@@ -1,0 +1,12 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "uvicorn app:app --host 0.0.0.0 --port $PORT"
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 10
+
+# Allow .well-known path for Farcaster manifest
+[build.nixpacksConfigOverride]
+phases.setup.nixPkgs = ["python39", "gcc"]
+phases.install.aptPkgs = ["curl"]
