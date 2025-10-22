@@ -64,13 +64,20 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware
+# CORS middleware - Allow Farcaster domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "*",  # Allow all origins
+        "https://farcaster.xyz",
+        "https://warpcast.com",
+        "https://www.warpcast.com",
+        "https://client.warpcast.com",
+    ],
+    allow_credentials=False,  # Changed to False for wildcard origins
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Mount static files
