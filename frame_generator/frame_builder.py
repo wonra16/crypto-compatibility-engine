@@ -316,6 +316,47 @@ class FrameGenerator:
             margin: 20px 0;
         }}
     </style>
+    
+    <!-- Farcaster Mini App SDK -->
+    <script type="module">
+        // Import SDK from CDN
+        import {{ sdk }} from 'https://esm.sh/@farcaster/miniapp-sdk';
+        
+        // Call ready immediately after import
+        (async () => {{
+            try {{
+                console.log('🚀 Initializing Farcaster Mini App SDK...');
+                
+                // CRITICAL: Always call ready() to hide splash screen
+                // This must be called as soon as the page loads
+                await sdk.actions.ready();
+                console.log('✅ Mini App SDK ready!');
+                
+                // Optional: Get context info
+                const context = await sdk.context;
+                console.log('📱 Context:', context);
+                
+            }} catch (error) {{
+                console.error('❌ SDK Error:', error);
+                // Even on error, try to call ready
+                try {{
+                    await sdk.actions.ready();
+                }} catch (e) {{
+                    console.error('Failed to call ready():', e);
+                }}
+            }}
+        }})();
+        
+        // Backup: Also try on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', async () => {{
+            try {{
+                console.log('🔄 DOMContentLoaded - ensuring SDK is ready');
+                await sdk.actions.ready();
+            }} catch (e) {{
+                console.log('SDK already ready or error:', e);
+            }}
+        }});
+    </script>
 </head>
 <body>
     <div class="frame-preview">
