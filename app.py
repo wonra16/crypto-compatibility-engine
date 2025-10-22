@@ -469,6 +469,23 @@ async def farcaster_manifest():
     )
 
 
+@app.get("/api/farcaster-manifest")
+@app.get("/farcaster.json")
+async def farcaster_manifest_alternative():
+    """
+    Alternative manifest endpoint for Railway compatibility
+    Use this if .well-known path is blocked by Railway's network
+    """
+    hosted_manifest_url = "https://api.farcaster.xyz/miniapps/hosted-manifest/019a0c33-cd8b-f128-bb93-f727b6e4d15e"
+    
+    print(f"🔗 Alternative manifest endpoint - Redirecting to: {hosted_manifest_url}")
+    
+    return RedirectResponse(
+        url=hosted_manifest_url,
+        status_code=307
+    )
+
+
 @app.post("/api/webhook")
 async def mini_app_webhook(request: Request):
     """Webhook endpoint for Mini App events"""
