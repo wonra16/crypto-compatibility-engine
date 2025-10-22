@@ -9,8 +9,7 @@
   "routes": [
     {
       "src": "/.well-known/farcaster.json",
-      "dest": "app.py",
-      "methods": ["GET", "HEAD", "OPTIONS"]
+      "dest": "app.py"
     },
     {
       "src": "/(.*)",
