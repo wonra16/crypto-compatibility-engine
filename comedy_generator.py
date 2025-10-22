@@ -13,9 +13,25 @@ load_dotenv()
 
 class ComedyGenerator:
     def __init__(self):
-        self.client = AsyncOpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        # Safely initialize OpenAI client
+        api_key = os.getenv('OPENAI_API_KEY')
+        
+        # Check if API key exists and is not empty
+        if api_key and api_key.strip():
+            try:
+                self.client = AsyncOpenAI(api_key=api_key)
+                self.use_ai = True
+                print("✅ OpenAI API initialized successfully")
+            except Exception as e:
+                print(f"⚠️ OpenAI initialization failed: {e}")
+                self.client = None
+                self.use_ai = False
+        else:
+            print("ℹ️ No OpenAI API key found - using template-based comedy only")
+            self.client = None
+            self.use_ai = False
+        
         self.comedy_templates = self._load_comedy_templates()
-        self.use_ai = os.getenv('OPENAI_API_KEY') is not None
     
     def _load_comedy_templates(self) -> Dict[str, Any]:
         """Load comedy templates from JSON"""
@@ -119,7 +135,7 @@ class ComedyGenerator:
                                 personality2: Dict[str, Any],
                                 compatibility_score: int) -> str:
         """Generate custom comedy using GPT-4"""
-        if not self.use_ai:
+        if not self.use_ai or not self.client:
             return self.get_match_comment(compatibility_score)
         
         try:
