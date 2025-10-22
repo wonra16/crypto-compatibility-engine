@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "redirects": [
-    {
-      "source": "/.well-known/farcaster.json",
-      "destination": "https://api.farcaster.xyz/miniapps/hosted-manifest/019a0c33-cd8b-f128-bb93-f727b6e4d15e",
-      "permanent": false
-    }
-  ],
   "builds": [
     {
       "src": "app.py",
@@ -14,6 +7,11 @@
     }
   ],
   "routes": [
+    {
+      "src": "/.well-known/farcaster.json",
+      "dest": "app.py",
+      "methods": ["GET", "HEAD", "OPTIONS"]
+    },
     {
       "src": "/(.*)",
       "dest": "app.py"
