@@ -269,101 +269,116 @@ class FrameGenerator:
     
     def generate_frame_html(self, frame_data: Dict[str, Any], 
                           title: str = "Crypto Compatibility") -> str:
-        """Generate HTML with frame meta tags"""
+        """Generate HTML with frame meta tags (Farcaster v2 format)"""
         buttons_html = ""
         for i, button in enumerate(frame_data.get('buttons', [])[:4], 1):
-            buttons_html += f'<meta property="fc:frame:button:{i}" content="{button["label"]}" />\n'
-            buttons_html += f'<meta property="fc:frame:button:{i}:action" content="{button["action"]}" />\n'
+            buttons_html += f'    <meta property="fc:frame:button:{i}" content="{button["label"]}" />\n'
+            buttons_html += f'    <meta property="fc:frame:button:{i}:action" content="{button.get("action", "post")}" />\n'
             if 'target' in button:
-                buttons_html += f'<meta property="fc:frame:button:{i}:target" content="{button["target"]}" />\n'
+                buttons_html += f'    <meta property="fc:frame:button:{i}:target" content="{button["target"]}" />\n'
         
         html = f"""<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
     
-    <!-- Frame Meta Tags -->
-    <meta property="fc:frame" content="{frame_data.get('version', 'next')}" />
+    <!-- Farcaster Frame Meta Tags (v2) -->
+    <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="{frame_data['image']}" />
     <meta property="fc:frame:image:aspect_ratio" content="{frame_data.get('image_aspect_ratio', '1:1')}" />
-    <meta property="fc:frame:post_url" content="{frame_data.get('post_url', self.base_url)}" />
-    {buttons_html}
+    <meta property="fc:frame:post_url" content="{frame_data.get('post_url', self.base_url + '/api/analyze')}" />
+{buttons_html}
     
     <!-- Open Graph -->
     <meta property="og:title" content="{title}" />
+    <meta property="og:description" content="Find your crypto soulmate on Farcaster! AI-powered compatibility matching." />
     <meta property="og:image" content="{frame_data['image']}" />
+    <meta property="og:url" content="{self.base_url}" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{title}" />
+    <meta name="twitter:description" content="Find your crypto soulmate on Farcaster!" />
+    <meta name="twitter:image" content="{frame_data['image']}" />
     
     <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
         body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            text-align: center;
+        }}
+        .container {{
+            max-width: 600px;
+            width: 100%;
         }}
         .frame-preview {{
-            border: 2px solid #8b5cf6;
-            border-radius: 12px;
-            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }}
+        h1 {{
+            font-size: 2em;
+            margin-bottom: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }}
+        .subtitle {{
+            color: #666;
+            margin-bottom: 24px;
+            font-size: 1.1em;
         }}
         img {{
             max-width: 100%;
+            border-radius: 12px;
+            margin: 24px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }}
+        .cta {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
             border-radius: 8px;
-            margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }}
+        .cta:hover {{
+            transform: translateY(-2px);
+        }}
+        .note {{
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 24px;
         }}
     </style>
-    
-    <!-- Farcaster Mini App SDK -->
-    <script type="module">
-        // Import SDK from CDN
-        import {{ sdk }} from 'https://esm.sh/@farcaster/miniapp-sdk';
-        
-        // Call ready immediately after import
-        (async () => {{
-            try {{
-                console.log('🚀 Initializing Farcaster Mini App SDK...');
-                
-                // CRITICAL: Always call ready() to hide splash screen
-                // This must be called as soon as the page loads
-                await sdk.actions.ready();
-                console.log('✅ Mini App SDK ready!');
-                
-                // Optional: Get context info
-                const context = await sdk.context;
-                console.log('📱 Context:', context);
-                
-            }} catch (error) {{
-                console.error('❌ SDK Error:', error);
-                // Even on error, try to call ready
-                try {{
-                    await sdk.actions.ready();
-                }} catch (e) {{
-                    console.error('Failed to call ready():', e);
-                }}
-            }}
-        }})();
-        
-        // Backup: Also try on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', async () => {{
-            try {{
-                console.log('🔄 DOMContentLoaded - ensuring SDK is ready');
-                await sdk.actions.ready();
-            }} catch (e) {{
-                console.log('SDK already ready or error:', e);
-            }}
-        }});
-    </script>
 </head>
 <body>
-    <div class="frame-preview">
-        <h1>🚀 Crypto Compatibility Engine</h1>
-        <p>Find your crypto soulmate on Farcaster!</p>
-        <img src="{frame_data['image']}" alt="Frame Preview" />
-        <p>Open this in Farcaster to interact with the frame!</p>
+    <div class="container">
+        <div class="frame-preview">
+            <h1>🚀 Crypto Compatibility Engine</h1>
+            <p class="subtitle">Find your crypto soulmate on Farcaster!</p>
+            <img src="{frame_data['image']}" alt="Crypto Compatibility Preview" />
+            <a href="https://warpcast.com" class="cta">Open in Warpcast</a>
+            <p class="note">This frame is interactive in Farcaster clients</p>
+        </div>
     </div>
 </body>
 </html>"""

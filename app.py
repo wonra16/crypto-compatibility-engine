@@ -22,13 +22,13 @@ load_dotenv()
 matchmaker = MatchmakerAI(use_mock_data=True)  # Change to False when you have real API keys
 comedy_gen = ComedyGenerator()
 
-# Get base URL from environment - with Railway automatic detection
+# Get base URL from environment - Vercel auto-detection
 BASE_URL = os.getenv('BASE_URL')
 if not BASE_URL:
-    # Try Railway's automatic domain
-    railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN') or os.getenv('RAILWAY_STATIC_URL')
-    if railway_domain:
-        BASE_URL = f'https://{railway_domain}' if not railway_domain.startswith('http') else railway_domain
+    # Try Vercel's automatic URL
+    vercel_url = os.getenv('VERCEL_URL')
+    if vercel_url:
+        BASE_URL = f'https://{vercel_url}' if not vercel_url.startswith('http') else vercel_url
     else:
         BASE_URL = 'http://localhost:8000'
 
@@ -64,9 +64,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware - Allow Farcaster and Railway domains
-# Get Railway domain for CORS
-railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN') or os.getenv('RAILWAY_STATIC_URL')
+# CORS middleware - Allow Farcaster and Vercel domains
 allowed_origins = [
     "*",  # Allow all origins for development and testing
     # Farcaster main domains
@@ -83,11 +81,12 @@ allowed_origins = [
     "https://client.warpcast.com",
 ]
 
-# Add Railway domain if available
-if railway_domain:
-    railway_url = f'https://{railway_domain}' if not railway_domain.startswith('http') else railway_domain
-    allowed_origins.append(railway_url)
-    print(f"🔐 Added Railway domain to CORS: {railway_url}")
+# Add Vercel deployment URL if available
+vercel_url = os.getenv('VERCEL_URL')
+if vercel_url:
+    full_url = f'https://{vercel_url}' if not vercel_url.startswith('http') else vercel_url
+    allowed_origins.append(full_url)
+    print(f"🔐 Added Vercel URL to CORS: {full_url}")
 
 app.add_middleware(
     CORSMiddleware,
@@ -457,32 +456,84 @@ async def generate_share_image(data: str):
 
 @app.get("/.well-known/farcaster.json")
 async def farcaster_manifest():
-    """Redirect to Warpcast Hosted Manifest"""
-    # Warpcast Hosted Manifest URL
-    hosted_manifest_url = "https://api.farcaster.xyz/miniapps/hosted-manifest/019a0c33-cd8b-f128-bb93-f727b6e4d15e"
+    """Farcaster Mini App Manifest - Direct JSON Response"""
+    # Get the deployment URL
+    vercel_url = os.getenv('VERCEL_URL')
+    if vercel_url:
+        app_url = f'https://{vercel_url}' if not vercel_url.startswith('http') else vercel_url
+    else:
+        app_url = BASE_URL
     
-    print(f"🔗 Redirecting to Warpcast Hosted Manifest: {hosted_manifest_url}")
+    manifest = {
+        "accountAssociation": {
+            "header": "eyJmaWQiOjAsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIn0",
+            "payload": "eyJkb21haW4iOiJjcnlwdG8tY29tcGF0aWJpbGl0eS5jb20ifQ",
+            "signature": "MHg..."
+        },
+        "frame": {
+            "version": "1",
+            "name": "Crypto Compatibility",
+            "iconUrl": f"{app_url}/static/images/icon-512.png",
+            "splashImageUrl": f"{app_url}/static/images/splash.png",
+            "splashBackgroundColor": "#667eea",
+            "homeUrl": app_url,
+            "imageUrl": f"{app_url}/static/images/og-image.png",
+            "buttonTitle": "Find Your Match",
+            "webhookUrl": f"{app_url}/api/webhook"
+        }
+    }
     
-    return RedirectResponse(
-        url=hosted_manifest_url,
-        status_code=307  # Temporary redirect (as required by Warpcast)
+    print(f"🎯 Serving Farcaster manifest for: {app_url}")
+    
+    return JSONResponse(
+        content=manifest,
+        headers={
+            "Content-Type": "application/json",
+            "Cache-Control": "public, max-age=3600",
+            "Access-Control-Allow-Origin": "*"
+        }
     )
 
 
 @app.get("/api/farcaster-manifest")
 @app.get("/farcaster.json")
 async def farcaster_manifest_alternative():
-    """
-    Alternative manifest endpoint for Railway compatibility
-    Use this if .well-known path is blocked by Railway's network
-    """
-    hosted_manifest_url = "https://api.farcaster.xyz/miniapps/hosted-manifest/019a0c33-cd8b-f128-bb93-f727b6e4d15e"
+    """Alternative manifest endpoint - same as .well-known"""
+    # Use same logic as main manifest
+    vercel_url = os.getenv('VERCEL_URL')
+    if vercel_url:
+        app_url = f'https://{vercel_url}' if not vercel_url.startswith('http') else vercel_url
+    else:
+        app_url = BASE_URL
     
-    print(f"🔗 Alternative manifest endpoint - Redirecting to: {hosted_manifest_url}")
+    manifest = {
+        "accountAssociation": {
+            "header": "eyJmaWQiOjAsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIn0",
+            "payload": "eyJkb21haW4iOiJjcnlwdG8tY29tcGF0aWJpbGl0eS5jb20ifQ",
+            "signature": "MHg..."
+        },
+        "frame": {
+            "version": "1",
+            "name": "Crypto Compatibility",
+            "iconUrl": f"{app_url}/static/images/icon-512.png",
+            "splashImageUrl": f"{app_url}/static/images/splash.png",
+            "splashBackgroundColor": "#667eea",
+            "homeUrl": app_url,
+            "imageUrl": f"{app_url}/static/images/og-image.png",
+            "buttonTitle": "Find Your Match",
+            "webhookUrl": f"{app_url}/api/webhook"
+        }
+    }
     
-    return RedirectResponse(
-        url=hosted_manifest_url,
-        status_code=307
+    print(f"🔗 Alternative manifest endpoint serving for: {app_url}")
+    
+    return JSONResponse(
+        content=manifest,
+        headers={
+            "Content-Type": "application/json",
+            "Cache-Control": "public, max-age=3600",
+            "Access-Control-Allow-Origin": "*"
+        }
     )
 
 
