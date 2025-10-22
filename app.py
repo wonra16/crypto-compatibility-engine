@@ -22,8 +22,17 @@ load_dotenv()
 matchmaker = MatchmakerAI(use_mock_data=True)  # Change to False when you have real API keys
 comedy_gen = ComedyGenerator()
 
-# Get base URL from environment
-BASE_URL = os.getenv('BASE_URL', 'http://localhost:8000')
+# Get base URL from environment - with Railway automatic detection
+BASE_URL = os.getenv('BASE_URL')
+if not BASE_URL:
+    # Try Railway's automatic domain
+    railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN') or os.getenv('RAILWAY_STATIC_URL')
+    if railway_domain:
+        BASE_URL = f'https://{railway_domain}' if not railway_domain.startswith('http') else railway_domain
+    else:
+        BASE_URL = 'http://localhost:8000'
+
+print(f"🌐 Using BASE_URL: {BASE_URL}")
 frame_generator = FrameGenerator(BASE_URL)
 
 # Lifespan context manager for startup/shutdown
