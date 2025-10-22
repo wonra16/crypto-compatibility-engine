@@ -68,12 +68,19 @@ app = FastAPI(
 # Get Railway domain for CORS
 railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN') or os.getenv('RAILWAY_STATIC_URL')
 allowed_origins = [
-    "*",  # Allow all origins for development
+    "*",  # Allow all origins for development and testing
+    # Farcaster main domains
     "https://farcaster.xyz",
+    "https://www.farcaster.xyz",
+    # Farcaster subdomains (Mini App related)
+    "https://wallet.farcaster.xyz",
+    "https://privy.farcaster.xyz",
+    "https://api.farcaster.xyz",
+    "https://client.farcaster.xyz",
+    # Warpcast domains
     "https://warpcast.com",
     "https://www.warpcast.com",
     "https://client.warpcast.com",
-    "https://api.farcaster.xyz",
 ]
 
 # Add Railway domain if available
@@ -85,6 +92,7 @@ if railway_domain:
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.farcaster\.xyz",  # Allow all Farcaster subdomains
     allow_credentials=False,  # Must be False when using wildcard
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
