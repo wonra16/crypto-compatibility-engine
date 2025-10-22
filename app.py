@@ -64,26 +64,53 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware - Allow Farcaster domains
+# CORS middleware - Allow Farcaster and Railway domains
+# Get Railway domain for CORS
+railway_domain = os.getenv('RAILWAY_PUBLIC_DOMAIN') or os.getenv('RAILWAY_STATIC_URL')
+allowed_origins = [
+    "*",  # Allow all origins for development
+    "https://farcaster.xyz",
+    "https://warpcast.com",
+    "https://www.warpcast.com",
+    "https://client.warpcast.com",
+    "https://api.farcaster.xyz",
+]
+
+# Add Railway domain if available
+if railway_domain:
+    railway_url = f'https://{railway_domain}' if not railway_domain.startswith('http') else railway_domain
+    allowed_origins.append(railway_url)
+    print(f"🔐 Added Railway domain to CORS: {railway_url}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "*",  # Allow all origins
-        "https://farcaster.xyz",
-        "https://warpcast.com",
-        "https://www.warpcast.com",
-        "https://client.warpcast.com",
-    ],
-    allow_credentials=False,  # Changed to False for wildcard origins
-    allow_methods=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=False,  # Must be False when using wildcard
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
     expose_headers=["*"],
+    max_age=3600,  # Cache preflight requests for 1 hour
 )
 
 # Mount static files
 os.makedirs("static", exist_ok=True)
 os.makedirs("static/images", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+# Add OPTIONS handler for all routes (CORS preflight)
+@app.options("/{path:path}")
+async def options_handler(path: str):
+    """Handle OPTIONS requests for CORS preflight"""
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Max-Age": "3600",
+        }
+    )
 
 
 # ============================================================================
