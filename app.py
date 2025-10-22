@@ -3,7 +3,7 @@ Crypto Compatibility Engine - Main FastAPI Application
 Production-ready dating frame for Farcaster
 """
 from fastapi import FastAPI, Request, Response, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
@@ -246,10 +246,11 @@ async def match_details(index: int, request: Request):
         
         if not matches or index >= len(matches):
             return JSONResponse(
-                content=frame_generator.generate_no_matches_frame()
+                content=frame_generator.generate_error_frame("No matches found")
             )
         
         match_data = matches[index]
+        
         frame_data = frame_generator.generate_match_details_frame(match_data)
         return JSONResponse(content=frame_data)
     
@@ -409,44 +410,21 @@ async def generate_share_image(data: str):
 
 
 # ============================================================================
-# FARCASTER MINI APP MANIFEST
+# FARCASTER MINI APP MANIFEST - REDIRECT TO WARPCAST HOSTED MANIFEST
 # ============================================================================
 
 @app.get("/.well-known/farcaster.json")
 async def farcaster_manifest():
-    """Farcaster Mini App Manifest - Required for Mini App registration"""
-    manifest = {
-        "accountAssociation": {
-            "header": "",
-            "payload": "",
-            "signature": ""
-        },
-        "frame": {
-            "version": "next",
-            "imageUrl": f"{BASE_URL}/static/images/og-image.png",
-            "button": {
-                "title": "Find Your Match 💕",
-                "action": {
-                    "type": "launch_frame",
-                    "name": "Crypto Compatibility Engine",
-                    "url": BASE_URL,
-                    "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
-                    "splashBackgroundColor": "#6366f1"
-                }
-            }
-        },
-        "name": "Crypto Compatibility Engine",
-        "shortName": "CryptoMatch",
-        "description": "Find your crypto soulmate! AI-powered personality analysis and smart matching for crypto degens 💎🤝",
-        "homeUrl": BASE_URL,
-        "iconUrl": f"{BASE_URL}/static/images/icon-512.png",
-        "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
-        "splashBackgroundColor": "#6366f1",
-        "webhookUrl": f"{BASE_URL}/api/webhook",
-        "imageUrl": f"{BASE_URL}/static/images/og-image.png"
-    }
-    print(f"🔍 Manifest served: name={manifest.get('name')}, homeUrl={manifest.get('homeUrl')}, iconUrl={manifest.get('iconUrl')}")
-    return manifest
+    """Redirect to Warpcast Hosted Manifest"""
+    # Warpcast Hosted Manifest URL - BURAYA SİZİN URL'İNİZİ YAPIŞTIRIN!
+    hosted_manifest_url = "https://api.farcaster.xyz/miniapps/hosted-manifest/019e0c33-cd8b-1128-bb93-f727b6e4d15e"
+    
+    print(f"🔗 Redirecting to Warpcast Hosted Manifest: {hosted_manifest_url}")
+    
+    return RedirectResponse(
+        url=hosted_manifest_url,
+        status_code=307  # Temporary redirect
+    )
 
 
 @app.post("/api/webhook")
