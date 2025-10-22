@@ -59,9 +59,9 @@ tmp/
 temp/
 *.tmp
 
-# Static files (keep structure, ignore content)
-static/images/*
-!static/images/.gitkeep
+# Static files - ignore temporary files only
+static/images/*.tmp
+static/images/temp_*
 
 # Jupyter Notebooks
 .ipynb_checkpoints/
