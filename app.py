@@ -410,45 +410,21 @@ async def generate_share_image(data: str):
 
 
 # ============================================================================
-# FARCASTER MINI APP MANIFEST
+# FARCASTER MINI APP MANIFEST - REDIRECT TO WARPCAST HOSTED MANIFEST
 # ============================================================================
 
 @app.get("/.well-known/farcaster.json")
 async def farcaster_manifest():
-    """Farcaster Mini App Manifest - Self-hosted version"""
-    manifest = {
-        "accountAssociation": {
-            "header": "",
-            "payload": "",
-            "signature": ""
-        },
-        "frame": {
-            "version": "next",
-            "imageUrl": f"{BASE_URL}/static/images/og-image.png",
-            "button": {
-                "title": "Find Your Match",
-                "action": {
-                    "type": "launch_frame",
-                    "name": "Crypto Compatibility Engine",
-                    "url": BASE_URL,
-                    "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
-                    "splashBackgroundColor": "#6366f1"
-                }
-            }
-        },
-        "name": "Crypto Compatibility Engine",
-        "shortName": "CryptoMatch",
-        "description": "Find your crypto soulmate! AI-powered personality analysis and smart matching for crypto degens",
-        "homeUrl": BASE_URL,
-        "iconUrl": f"{BASE_URL}/static/images/icon-512.png",
-        "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
-        "splashBackgroundColor": "#6366f1",
-        "webhookUrl": f"{BASE_URL}/api/webhook",
-        "imageUrl": f"{BASE_URL}/static/images/og-image.png"
-    }
+    """Redirect to Warpcast Hosted Manifest"""
+    # Warpcast Hosted Manifest URL
+    hosted_manifest_url = "https://api.farcaster.xyz/miniapps/hosted-manifest/019a0c33-cd8b-f128-bb93-f727b6e4d15e"
     
-    print(f"📋 Manifest served: name={manifest['name']}, homeUrl={manifest['homeUrl']}")
-    return manifest
+    print(f"🔗 Redirecting to Warpcast Hosted Manifest: {hosted_manifest_url}")
+    
+    return RedirectResponse(
+        url=hosted_manifest_url,
+        status_code=307  # Temporary redirect (as required by Warpcast)
+    )
 
 
 @app.post("/api/webhook")
