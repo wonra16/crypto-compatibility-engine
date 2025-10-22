@@ -415,7 +415,7 @@ async def generate_share_image(data: str):
 @app.get("/.well-known/farcaster.json")
 async def farcaster_manifest():
     """Farcaster Mini App Manifest - Required for Mini App registration"""
-    return {
+    manifest = {
         "accountAssociation": {
             "header": "",
             "payload": "",
@@ -428,7 +428,7 @@ async def farcaster_manifest():
                 "title": "Find Your Match 💕",
                 "action": {
                     "type": "launch_frame",
-                    "name": "Crypto Compatibility",
+                    "name": "Crypto Compatibility Engine",
                     "url": BASE_URL,
                     "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
                     "splashBackgroundColor": "#6366f1"
@@ -442,8 +442,11 @@ async def farcaster_manifest():
         "iconUrl": f"{BASE_URL}/static/images/icon-512.png",
         "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
         "splashBackgroundColor": "#6366f1",
-        "webhookUrl": f"{BASE_URL}/api/webhook"
+        "webhookUrl": f"{BASE_URL}/api/webhook",
+        "imageUrl": f"{BASE_URL}/static/images/og-image.png"
     }
+    print(f"🔍 Manifest served: name={manifest.get('name')}, homeUrl={manifest.get('homeUrl')}, iconUrl={manifest.get('iconUrl')}")
+    return manifest
 
 
 @app.post("/api/webhook")
