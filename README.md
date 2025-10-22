@@ -498,5 +498,3 @@ MIT License - detaylar için LICENSE dosyasına bakın
 ---
 
 **⭐ Beğendiyseniz yıldız vermeyi unutmayın!**
-#   c r y p t o - c o m p a t i b i l i t y - e n g i n e  
- 

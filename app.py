@@ -399,6 +399,63 @@ async def generate_share_image(data: str):
     )
 
 
+# ============================================================================
+# FARCASTER MINI APP MANIFEST
+# ============================================================================
+
+@app.get("/.well-known/farcaster.json")
+async def farcaster_manifest():
+    """Farcaster Mini App Manifest - Required for Mini App registration"""
+    return {
+        "accountAssociation": {
+            "header": "",
+            "payload": "",
+            "signature": ""
+        },
+        "frame": {
+            "version": "next",
+            "imageUrl": f"{BASE_URL}/static/images/og-image.png",
+            "button": {
+                "title": "Find Your Match 💕",
+                "action": {
+                    "type": "launch_frame",
+                    "name": "Crypto Compatibility",
+                    "url": BASE_URL,
+                    "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
+                    "splashBackgroundColor": "#6366f1"
+                }
+            }
+        },
+        "name": "Crypto Compatibility Engine",
+        "shortName": "CryptoMatch",
+        "description": "Find your crypto soulmate! AI-powered personality analysis and smart matching for crypto degens 💎🤝",
+        "homeUrl": BASE_URL,
+        "iconUrl": f"{BASE_URL}/static/images/icon-512.png",
+        "splashImageUrl": f"{BASE_URL}/static/images/splash.png",
+        "splashBackgroundColor": "#6366f1",
+        "webhookUrl": f"{BASE_URL}/api/webhook"
+    }
+
+
+@app.post("/api/webhook")
+async def mini_app_webhook(request: Request):
+    """Webhook endpoint for Mini App events"""
+    try:
+        body = await request.json()
+        print(f"📱 Mini App webhook received: {body}")
+        
+        # Log to analytics if available
+        try:
+            await db.log_analytics('mini_app_event', 0, body)
+        except:
+            pass
+        
+        return {"status": "ok", "message": "Webhook received"}
+    except Exception as e:
+        print(f"⚠️ Webhook error: {e}")
+        return {"status": "error", "message": str(e)}
+
+
 # Placeholder images endpoints
 @app.get("/images/{image_name}")
 async def serve_image(image_name: str):
